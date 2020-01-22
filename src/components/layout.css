@@ -28,6 +28,9 @@ progress,
 video {
   display: inline-block;
 }
+main {
+  height: 100vh;
+}
 audio:not([controls]) {
   display: none;
   height: 0;

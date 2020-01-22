@@ -8,8 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { AudioPlayerProvider } from "@rossbrown/react-use-audio-player"
+import { Grommet } from "grommet"
 
 import Header from "./header"
+import theme from "./theme"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -24,23 +27,11 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+    <Grommet theme={theme}>
+      <AudioPlayerProvider>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+      </AudioPlayerProvider>
+    </Grommet>
   )
 }
 
