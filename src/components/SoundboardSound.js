@@ -1,5 +1,6 @@
-import React, { useEffect } from "react"
-import { Box } from "grommet"
+import React, { useEffect, useState } from "react"
+import { Box, Heading, Text } from "grommet"
+import styled from "styled-components"
 
 const SoundboardSound = ({ handleClick, sound, sprite, isPlaying }) => {
   return (
@@ -10,10 +11,12 @@ const SoundboardSound = ({ handleClick, sound, sprite, isPlaying }) => {
       basis="30%"
       pad="medium"
       justify="center"
-      background={isPlaying ? "brand" : "black"}
+      background={isPlaying ? "brand" : "transparent"}
       fill
     >
-      <h2>{sound.title}</h2>
+      <Heading level={2} textAlign="center">
+        {sound.title}
+      </Heading>
     </Box>
   )
 }
