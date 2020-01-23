@@ -14,7 +14,12 @@ const theme = {
     level: {
       2: {
         medium: {
-          small: "22px",
+          height: "22px",
+        },
+      },
+      3: {
+        medium: {
+          height: "22px",
         },
       },
     },
