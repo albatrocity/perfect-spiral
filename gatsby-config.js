@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Hail Mary`,
+    title: `Perfect Spiral`,
     description: `A Soundboard for Football Games`,
     author: `@albatrocity`,
   },
@@ -25,8 +25,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Hail Mary`,
-        short_name: `Hail Mary`,
+        name: `Perfect Spiral`,
+        short_name: `Perfect Spiral`,
         start_url: `/`,
         background_color: `#085927`,
         theme_color: `#fff`,
