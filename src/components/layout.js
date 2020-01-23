@@ -9,13 +9,15 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { AudioPlayerProvider } from "@rossbrown/react-use-audio-player"
-import { Grommet } from "grommet"
-
-import Header from "./header"
-import theme from "./theme"
+import { Grommet, Main } from "grommet"
+import styled from "styled-components"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const StlyedMain = styled(Main)`
+  height: 100vh;
+`
+
+const Layout = ({ children, theme }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -29,7 +31,7 @@ const Layout = ({ children }) => {
   return (
     <Grommet theme={theme}>
       <AudioPlayerProvider>
-        <main>{children}</main>
+        <StlyedMain>{children}</StlyedMain>
       </AudioPlayerProvider>
     </Grommet>
   )

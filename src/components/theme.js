@@ -1,13 +1,26 @@
 const theme = {
   global: {
     colors: {
-      brand: "#228BE6",
+      brand: "red",
     },
     font: {
-      family: "Roboto",
+      family: "VT323",
       size: "14px",
       height: "20px",
     },
+  },
+  heading: {
+    weight: 100,
+    level: {
+      2: {
+        medium: {
+          small: "22px",
+        },
+      },
+    },
+  },
+  layer: {
+    background: "rgba(8,89,39, 0.95)",
   },
 }
 

@@ -3,16 +3,18 @@ import { Box } from "grommet"
 import SoundboardRow from "./SoundboardRow"
 import Spinner from "./Spinner"
 import { useAudioPlayer } from "@rossbrown/react-use-audio-player"
-import { useAudioPosition } from "@rossbrown/react-use-audio-player"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
+import { head, last } from "lodash/fp"
 
-const SOUNDS_PER_ROW = 3
+const SOUNDS_PER_ROW = 2
 
 const allSprites = sounds.reduce((out, x) => {
   out[x.name] = x.sprite
   return out
 }, {})
+
+const mainSounds = sounds.slice(1, -1)
 
 const Soundboard = () => {
   const {
@@ -32,7 +34,6 @@ const Soundboard = () => {
   })
 
   const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
 
   const handlePlay = sprite => {
     if (sprite === currentlyPlaying) {
@@ -60,8 +61,17 @@ const Soundboard = () => {
     )
 
   return (
-    <Box justify="between" fill>
-      {chunkArray(sounds, 3).map((x, i) => (
+    <Box fill>
+      <SoundboardRow
+        key={`row-touchdown-1`}
+        sounds={[head(sounds)]}
+        sprite={allSprites}
+        playing={playing}
+        onPlay={handlePlay}
+        onStop={stop}
+        currentlyPlaying={currentlyPlaying}
+      />
+      {chunkArray(mainSounds, SOUNDS_PER_ROW).map((x, i) => (
         <SoundboardRow
           key={`row-${i}`}
           sounds={x}
@@ -72,6 +82,15 @@ const Soundboard = () => {
           currentlyPlaying={currentlyPlaying}
         />
       ))}
+      <SoundboardRow
+        key={`row-touchdown-2`}
+        sounds={[last(sounds)]}
+        sprite={allSprites}
+        playing={playing}
+        onPlay={handlePlay}
+        onStop={stop}
+        currentlyPlaying={currentlyPlaying}
+      />
     </Box>
   )
 }

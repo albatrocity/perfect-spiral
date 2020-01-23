@@ -5,8 +5,6 @@ import SoundboardSound from "./SoundboardSound"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
 
-const SOUNDS_PER_ROW = 3
-
 const SoundboardRow = ({
   sounds,
   onPlay,
@@ -17,7 +15,7 @@ const SoundboardRow = ({
   const isPlaying = sound => currentlyPlaying && currentlyPlaying === sound.name
 
   return (
-    <Box direction="row" fill>
+    <Box direction="row" fill border={{ color: "white", side: "horizontal" }}>
       {sounds.map(x => (
         <SoundboardSound
           handleClick={onPlay}
