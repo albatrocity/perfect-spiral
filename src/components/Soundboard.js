@@ -55,7 +55,14 @@ const Soundboard = () => {
 
   if (loading)
     return (
-      <Box fill pad="medium" justify="center" animation="pulse" gap="small">
+      <Box
+        fill
+        direction="column"
+        pad="medium"
+        justify="center"
+        animation="pulse"
+        gap="small"
+      >
         <Spinner color="white" />
         <Heading level={1} color="white" margin="none" textAlign="center">
           Loading songs...
