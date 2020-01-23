@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "grommet"
+import { Box, Heading } from "grommet"
 import SoundboardRow from "./SoundboardRow"
 import Spinner from "./Spinner"
 import { useAudioPlayer } from "@rossbrown/react-use-audio-player"
@@ -55,8 +55,11 @@ const Soundboard = () => {
 
   if (loading)
     return (
-      <Box fill pad="medium" justify="around">
+      <Box fill pad="medium" justify="center" animation="pulse" gap="small">
         <Spinner color="white" />
+        <Heading level={1} color="white" margin="none" textAlign="center">
+          Loading songs...
+        </Heading>
       </Box>
     )
 
