@@ -64,7 +64,12 @@ const Soundboard = () => {
         gap="small"
       >
         <Spinner color="white" />
-        <Heading level={1} color="white" margin="none" textAlign="center">
+        <Heading
+          level={1}
+          color="white"
+          margin={{ horizontal: "auto", vertical: "none" }}
+          textAlign="center"
+        >
           Loading songs...
         </Heading>
       </Box>
