@@ -30,7 +30,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#085927`,
         theme_color: `#fff`,
-        display: `standalone`,
+        display: `minimail-ui`,
         icon: `src/images/football.png`,
       },
     },

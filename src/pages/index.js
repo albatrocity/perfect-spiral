@@ -55,7 +55,7 @@ const IndexPage = () => {
       >
         {teamNotChosen && (
           <Layer background="blue">
-            <Box pad="medium" fill justify="between" background="transparent">
+            <Box pad="medium" fill justify="center" background="transparent">
               <Heading level={1} textAlign="center" color="white">
                 Choose your team
               </Heading>
