@@ -56,7 +56,7 @@ const Soundboard = () => {
   if (loading)
     return (
       <Box fill pad="medium" justify="around">
-        <Spinner />
+        <Spinner color="white" />
       </Box>
     )
 
