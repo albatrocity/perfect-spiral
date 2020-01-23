@@ -42,7 +42,7 @@ const IndexPage = () => {
   const teamName = activeTheme.global.team
   return (
     <Layout theme={activeTheme}>
-      <SEO title={teamName ? `Go ${teamName}!` : ""} />
+      <SEO title={teamName ? `Go ${teamName}!` : "Choose Team"} />
       <TeamContainer>
         <Helmet team={activeTheme.team} onClick={() => setTheme(theme)} />
       </TeamContainer>

@@ -13,7 +13,8 @@ const Image = styled.img`
 `
 
 const Helmet = ({ team, onClick, ...rest }) => {
-  const name = team || ThemeContext._currentValue.global.name
+  const name =
+    team || (ThemeContext._currentValue || { global: {} }).global.name
   const data = useStaticQuery(graphql`
     query {
       chiefs: file(relativePath: { eq: "chiefs.gif" }) {
