@@ -25,11 +25,13 @@ const Soundboard = () => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
   const [activeHowl, setActiveHowl] = useState(null)
 
+  Howler.ctx && Howler.ctx.resume()
+
   const handlePlay = async (howl, sound) => {
     if (currentlyPlaying && currentlyPlaying.name === sound.name) {
       setCurrentlyPlaying(null)
     } else {
-      if (ctx && ctx.state === "interrupted") {
+      if (Howler.ctx && Howler.ctx.state === "interrupted") {
         await ctx.resume()
       }
       setActiveHowl(howl)
