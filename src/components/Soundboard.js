@@ -9,20 +9,7 @@ import { head, last } from "lodash/fp"
 import { Howl, Howler } from "howler"
 
 Howler.autoSuspend = false
-Howler.mobileAutoEnable = false
-
-document.addEventListener(
-  "visibilitychange",
-  () => {
-    const { ctx } = Howler
-    if (ctx && !document.hidden) {
-      setTimeout(() => {
-        ctx.resume()
-      }, 100)
-    }
-  },
-  false
-)
+Howler.autoUnlock = true
 
 const SOUNDS_PER_ROW = 2
 
@@ -49,6 +36,22 @@ const Soundboard = () => {
     autoplay: false,
     sprite: allSprites,
   })
+
+  const [suspended, setSuspended] = useState(false)
+
+  useEffect(() => {
+    document.addEventListener(
+      "visibilitychange",
+      e => {
+        const { ctx } = Howler
+        if (document.visibilityState === "visible") {
+          Howler._unlockAudio()
+          ctx.resume()
+        }
+      },
+      false
+    )
+  }, [])
 
   const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
 
