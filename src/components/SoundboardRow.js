@@ -5,13 +5,7 @@ import SoundboardSound from "./SoundboardSound"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
 
-const SoundboardRow = ({
-  sounds,
-  onPlay,
-  onStop,
-  sprite,
-  currentlyPlaying,
-}) => {
+const SoundboardRow = ({ sounds, onPlay, onStop, currentlyPlaying }) => {
   const isPlaying = sound => currentlyPlaying && currentlyPlaying === sound.name
 
   return (
@@ -21,7 +15,6 @@ const SoundboardRow = ({
           handleClick={onPlay}
           sound={x}
           key={x.name}
-          sprite={sprite[x.name]}
           isPlaying={isPlaying(x)}
         />
       ))}

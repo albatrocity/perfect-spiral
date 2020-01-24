@@ -11,7 +11,7 @@ const SoundboardSound = ({ handleClick, sound, sprite, isPlaying }) => {
   return (
     <Box
       flex="grow"
-      onClick={() => handleClick(sound.name)}
+      onClick={() => handleClick(sound)}
       align="center"
       basis="30%"
       pad="small"

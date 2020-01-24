@@ -6,101 +6,94 @@ import { useAudioPlayer } from "@rossbrown/react-use-audio-player"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
 import { head, last } from "lodash/fp"
-import { Howl, Howler } from "howler"
+import { Howler } from "howler"
 
 Howler.autoSuspend = false
 Howler.autoUnlock = true
 
 const SOUNDS_PER_ROW = 2
-
-const allSprites = sounds.reduce((out, x) => {
-  out[x.name] = x.sprite
-  return out
-}, {})
+const AUDIO_URL = "https://football-soundboard.s3.amazonaws.com/all.mp3"
+const BLANK_URL = "https://football-soundboard.s3.amazonaws.com/blank.mp3"
 
 const mainSounds = sounds.slice(1, -1)
 
 const Soundboard = () => {
+  const [audioFile, setAudioFile] = useState(head(sounds).files || BLANK_URL)
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
+
   const {
     play,
     stop,
     pause,
+    load,
     ready,
     loading,
     playing,
     stopped,
     seek,
-  } = useAudioPlayer({
-    src: "https://football-soundboard.s3.amazonaws.com/all.mp3",
-    format: "mp3",
-    autoplay: false,
-    sprite: allSprites,
-  })
+    muted,
+    volume,
+  } = useAudioPlayer()
 
-  const [suspended, setSuspended] = useState(false)
-
-  useEffect(() => {
-    document.addEventListener(
-      "visibilitychange",
-      e => {
-        const { ctx } = Howler
-        if (document.visibilityState === "visible") {
-          Howler._unlockAudio()
-          ctx.resume()
-        }
-      },
-      false
-    )
-  }, [])
-
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
-
-  const handlePlay = sprite => {
-    if (sprite === currentlyPlaying) {
+  const handlePlay = song => {
+    console.log(song)
+    // stop()
+    // setCurrentlyPlaying(song)
+    // load({ src: song.files })
+    if (playing) {
+      console.log("is playing, stop")
       stop()
     } else {
-      pause()
-      setCurrentlyPlaying(sprite)
-      seek(0)
-      play(sprite)
-      setCurrentlyPlaying(sprite)
+      console.log("not playing")
+      load({ src: song.files, autoplay: true })
     }
+    // if (sprite === currentlyPlaying) {
+    //   stop()
+    // } else {
+    //   pause()
+    //   setCurrentlyPlaying(sprite)
+    //   seek(0)
+    //   play(sprite)
+    //   setCurrentlyPlaying(sprite)
+    // }
   }
+  console.log("ready", ready)
+  //
+  // useEffect(() => {
+  //   console.log("loading", loading)
+  //   console.log("ready", ready)
+  //   // if (!loading && ready) {
+  //   //   play()
+  //   // }
+  // }, [loading, ready])
 
-  useEffect(() => {
-    if (stopped) {
-      setCurrentlyPlaying(null)
-    }
-  }, [stopped])
-
-  if (loading)
-    return (
-      <Box
-        fill
-        direction="column"
-        pad="medium"
-        justify="center"
-        animation="pulse"
-        gap="small"
-      >
-        <Spinner color="white" />
-        <Heading
-          level={1}
-          color="white"
-          margin={{ horizontal: "auto", vertical: "none" }}
-          textAlign="center"
-        >
-          Loading songs. Turn off silent mode.
-        </Heading>
-      </Box>
-    )
+  // if (loading)
+  //   return (
+  //     <Box
+  //       fill
+  //       direction="column"
+  //       pad="medium"
+  //       justify="center"
+  //       animation="pulse"
+  //       gap="small"
+  //     >
+  //       <Spinner color="white" />
+  //       <Heading
+  //         level={1}
+  //         color="white"
+  //         margin={{ horizontal: "auto", vertical: "none" }}
+  //         textAlign="center"
+  //       >
+  //         Loading songs. Turn off silent mode.
+  //       </Heading>
+  //     </Box>
+  //   )
 
   return (
     <Box fill>
       <SoundboardRow
         key={`row-touchdown-1`}
         sounds={[head(sounds)]}
-        sprite={allSprites}
         playing={playing}
         onPlay={handlePlay}
         onStop={stop}
@@ -110,7 +103,6 @@ const Soundboard = () => {
         <SoundboardRow
           key={`row-${i}`}
           sounds={x}
-          sprite={allSprites}
           playing={playing}
           onPlay={handlePlay}
           onStop={stop}
@@ -120,7 +112,6 @@ const Soundboard = () => {
       <SoundboardRow
         key={`row-touchdown-2`}
         sounds={[last(sounds)]}
-        sprite={allSprites}
         playing={playing}
         onPlay={handlePlay}
         onStop={stop}
