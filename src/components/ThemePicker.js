@@ -7,10 +7,12 @@ const ThemePicker = ({ onChange }) => {
   const themes = {
     chiefs: {
       color: "#E31837",
+      accent: "#FFB81C",
       team: "Chiefs",
     },
     fourtyNiners: {
       color: "#AA0000",
+      accent: "#B3995D",
       team: "49ers",
     },
   }
@@ -30,6 +32,7 @@ const ThemePicker = ({ onChange }) => {
         colors: {
           ...baseTheme.global.colors,
           brand: themes[team].color,
+          "accent-1": themes[team].accent,
         },
       },
     }

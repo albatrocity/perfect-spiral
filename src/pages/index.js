@@ -21,6 +21,7 @@ const TeamContainer = styled(Box)`
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 20;
 `
 
 const IndexPage = () => {

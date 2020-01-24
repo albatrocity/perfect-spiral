@@ -21,7 +21,10 @@ const Soundboard = () => {
   const [audioFile, setAudioFile] = useState()
   const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
   const [activeHowl, setActiveHowl] = useState(null)
+  const [progress, setProgress] = useState(0)
+  const animationRef = useRef()
 
+  // Recover from interrupted audio context on visibilitychange
   Howler.ctx && Howler.ctx.resume()
 
   const handlePlay = async (howl, sound) => {
@@ -36,8 +39,29 @@ const Soundboard = () => {
     }
   }
 
+  const setPosition = () => {
+    if (activeHowl.playing()) {
+      setProgress((activeHowl.seek() / activeHowl.duration()) * 100)
+    }
+    if (currentlyPlaying) {
+      getPosition()
+    } else {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+    }
+  }
+
+  const getPosition = () => {
+    animationRef.current = requestAnimationFrame(setPosition)
+  }
+
+  useEffect(() => {
+    if (activeHowl) {
+      getPosition()
+    }
+  }, [activeHowl])
+
   return (
-    <AudioContext.Provider value={{ currentlyPlaying }}>
+    <AudioContext.Provider value={{ currentlyPlaying, progress }}>
       <Box fill>
         <SoundboardRow
           key={`row-touchdown-1`}
@@ -52,7 +76,11 @@ const Soundboard = () => {
           sounds={[last(sounds)]}
           onPlay={handlePlay}
         />
-        <Play stop={!currentlyPlaying} howl={activeHowl} />
+        <Play
+          onEnd={() => setCurrentlyPlaying(null)}
+          stop={!currentlyPlaying}
+          howl={activeHowl}
+        />
       </Box>
     </AudioContext.Provider>
   )
