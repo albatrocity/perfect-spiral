@@ -29,7 +29,7 @@ const Soundboard = () => {
       setCurrentlyPlaying(null)
     } else {
       if (Howler.ctx && Howler.ctx.state === "interrupted") {
-        await ctx.resume()
+        await Howler.ctx.resume()
       }
       setActiveHowl(howl)
       setCurrentlyPlaying(sound)
