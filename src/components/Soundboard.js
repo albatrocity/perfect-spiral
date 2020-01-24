@@ -12,6 +12,9 @@ import AudioContext from "./AudioContext"
 // Howler.autoSuspend = false
 // Howler.autoUnlock = true
 const { ctx } = Howler
+if (window) {
+  window.Howler = Howler
+}
 
 const SOUNDS_PER_ROW = 2
 
