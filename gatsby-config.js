@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Perfect Spiral`,
     description: `A Soundboard for Football Games`,
-    author: `@albatrocity`,
+    author: `@shyboyskc`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
