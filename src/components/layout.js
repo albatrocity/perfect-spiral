@@ -8,7 +8,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { AudioPlayerProvider } from "@rossbrown/react-use-audio-player"
 import { Grommet, Main } from "grommet"
 import styled from "styled-components"
 import "./layout.css"
@@ -30,9 +29,7 @@ const Layout = ({ children, theme }) => {
 
   return (
     <Grommet theme={theme}>
-      <AudioPlayerProvider>
-        <StlyedMain>{children}</StlyedMain>
-      </AudioPlayerProvider>
+      <StlyedMain>{children}</StlyedMain>
     </Grommet>
   )
 }

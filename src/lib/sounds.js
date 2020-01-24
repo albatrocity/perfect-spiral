@@ -1,7 +1,7 @@
 const sounds = [
   {
     title: "Touchdown",
-    sprite: [313000, 50000],
+    files: ["https://football-soundboard.s3.amazonaws.com/Touchdown.mp3"],
     name: "touchdown1",
     full: true,
   },

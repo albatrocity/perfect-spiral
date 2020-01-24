@@ -11,12 +11,7 @@ const SoundboardRow = ({ sounds, onPlay, onStop, currentlyPlaying }) => {
   return (
     <Box direction="row" fill border={{ color: "white", side: "horizontal" }}>
       {sounds.map(x => (
-        <SoundboardSound
-          handleClick={onPlay}
-          sound={x}
-          key={x.name}
-          isPlaying={isPlaying(x)}
-        />
+        <SoundboardSound handleClick={onPlay} sound={x} key={x.name} />
       ))}
     </Box>
   )
