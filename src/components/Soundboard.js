@@ -9,6 +9,20 @@ import { head, last } from "lodash/fp"
 import { Howl, Howler } from "howler"
 
 Howler.autoSuspend = false
+Howler.mobileAutoEnable = false
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+    const { ctx } = Howler
+    if (ctx && !document.hidden) {
+      setTimeout(() => {
+        ctx.resume()
+      }, 100)
+    }
+  },
+  false
+)
 
 const SOUNDS_PER_ROW = 2
 
@@ -73,7 +87,7 @@ const Soundboard = () => {
           margin={{ horizontal: "auto", vertical: "none" }}
           textAlign="center"
         >
-          Loading songs...
+          Loading songs. Turn off silent mode.
         </Heading>
       </Box>
     )
