@@ -6,6 +6,9 @@ import { useAudioPlayer } from "@rossbrown/react-use-audio-player"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
 import { head, last } from "lodash/fp"
+import { Howl, Howler } from "howler"
+
+Howler.autoSuspend = false
 
 const SOUNDS_PER_ROW = 2
 
