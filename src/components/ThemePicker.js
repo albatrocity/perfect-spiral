@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-import { Box, Text } from "grommet"
+import { Box, Text, Anchor } from "grommet"
 import Helmet from "./Helmet"
 import baseTheme from "./theme"
 

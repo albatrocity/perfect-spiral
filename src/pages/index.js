@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 import theme from "../components/theme"
 import { useStaticQuery, graphql } from "gatsby"
-import { Box, Layer, Heading, Stack } from "grommet"
+import { Box, Layer, Heading, Text, Anchor } from "grommet"
 import styled from "styled-components"
 
 import Layout from "../components/layout"
@@ -65,6 +65,13 @@ const IndexPage = () => {
           </Layer>
         )}
         <Soundboard />
+        <Box>
+          <Text color="white">
+            <Link style={{ color: "white" }} to="/privacy">
+              Privacy/Terms
+            </Link>
+          </Text>
+        </Box>
       </Container>
     </Layout>
   )
