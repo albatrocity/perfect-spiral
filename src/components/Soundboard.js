@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useRef } from "react"
 import { Box, Heading } from "grommet"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import SoundboardRow from "./SoundboardRow"
 import Spinner from "./Spinner"
 import { useHowl, Play } from "rehowl"
@@ -34,6 +35,11 @@ const Soundboard = () => {
       if (Howler.ctx && Howler.ctx.state === "interrupted") {
         await Howler.ctx.resume()
       }
+      trackCustomEvent({
+        category: "Soundboard",
+        action: "play",
+        label: sound.title,
+      })
       setActiveHowl(howl)
       setCurrentlyPlaying(sound)
     }
