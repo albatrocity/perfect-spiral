@@ -68,8 +68,8 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
-          name: `og:description`,
-          content: metaDescription,
+          name: `og:image`,
+          content: `https://football-soundboard.s3.amazonaws.com/IMG_67921.jpg`,
         },
       ].concat(meta)}
     />
