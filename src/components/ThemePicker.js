@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { Box, Text } from "grommet"
 import Helmet from "./Helmet"
 import baseTheme from "./theme"
@@ -23,16 +24,21 @@ const ThemePicker = ({ onChange }) => {
   ]
 
   const handleChange = team => {
+    trackCustomEvent({
+      category: "Teams",
+      action: "choose",
+      label: team.label,
+    })
     const merged = {
       ...baseTheme,
       global: {
         ...baseTheme.global,
-        name: team,
-        team: themes[team].team,
+        name: team.value,
+        team: themes[team.value].team,
         colors: {
           ...baseTheme.global.colors,
-          brand: themes[team].color,
-          "accent-1": themes[team].accent,
+          brand: themes[team.value].color,
+          "accent-1": themes[team.value].accent,
         },
       },
     }
@@ -45,7 +51,7 @@ const ThemePicker = ({ onChange }) => {
         <Box key={team.value}>
           <Helmet
             team={team.value}
-            onClick={() => handleChange(team.value)}
+            onClick={() => handleChange(team)}
             alt={team.label}
             title={team.label}
           />
