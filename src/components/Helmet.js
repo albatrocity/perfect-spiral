@@ -20,7 +20,7 @@ const Helmet = ({ team, onClick, ...rest }) => {
       chiefs: file(relativePath: { eq: "chiefs.gif" }) {
         publicURL
       }
-      fourtyNiners: file(relativePath: { eq: "niners.gif" }) {
+      buccaneers: file(relativePath: { eq: "buccaneers.gif" }) {
         publicURL
       }
     }

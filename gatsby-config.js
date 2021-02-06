@@ -7,9 +7,11 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: "gatsby-plugin-prefetch-google-fonts",
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
-        fonts: [{ family: "VT323" }],
+        google: {
+          families: ["VT323"],
+        },
       },
     },
     {

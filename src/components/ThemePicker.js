@@ -11,19 +11,19 @@ const ThemePicker = ({ onChange }) => {
       accent: "#FFB81C",
       team: "Chiefs",
     },
-    fourtyNiners: {
-      color: "#AA0000",
-      accent: "#B3995D",
-      team: "49ers",
+    buccaneers: {
+      color: "#d50a0a",
+      accent: "#34302b",
+      team: "Buccaneers",
     },
   }
 
   const teams = [
     { label: "Chiefs", value: "chiefs" },
-    { label: "49ers", value: "fourtyNiners" },
+    { label: "Buccaneers", value: "buccaneers" },
   ]
 
-  const handleChange = team => {
+  const handleChange = (team) => {
     trackCustomEvent({
       category: "Teams",
       action: "choose",
@@ -47,8 +47,8 @@ const ThemePicker = ({ onChange }) => {
 
   return (
     <Box width="large" direction="row" align="center" justify="center">
-      {teams.map(team => (
-        <Box key={team.value}>
+      {teams.map((team) => (
+        <Box key={team.value} width={{ max: "200px" }}>
           <Helmet
             team={team.value}
             onClick={() => handleChange(team)}
