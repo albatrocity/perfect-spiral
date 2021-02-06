@@ -1,4 +1,4 @@
-## Hail Mary
+## Perfect Spiral
 
 A soundboard for the 2020 Super Bowl, loaded with the best football term-specific songs you'll ever hear. Made with [Gatsby](https://www.gatsbyjs.org), [React](https://reactjs.org), [Howler](http://howlerjs.com), [Rehowl](https://github.com/morinted/rehowl), and [Grommet](http://v2.grommet.io).
 
