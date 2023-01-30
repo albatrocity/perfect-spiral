@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Perfect Spiral`,
@@ -32,7 +36,6 @@ module.exports = {
         start_url: `/`,
         background_color: `#085927`,
         theme_color: `#fff`,
-        display: `minimail-ui`,
         icon: `src/images/football.png`,
       },
     },

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext } from "react"
-import { Box, Heading, Text } from "grommet"
+import React, { useContext } from "react"
+import { Box, Heading } from "grommet"
 import Helmet from "./Helmet"
 import styled from "styled-components"
 import { useHowl } from "rehowl"
-import Spinner from "./Spinner"
 import AudioContext from "./AudioContext"
 
 const Title = styled(Heading)`
@@ -17,7 +16,7 @@ const StyledHelmet = styled(Helmet)`
 `
 
 const SoundboardSound = ({ handleClick, sound }) => {
-  const { howl, state, error, load } = useHowl({
+  const { howl, state } = useHowl({
     src: sound.files,
     autoplay: false,
   })

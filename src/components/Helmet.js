@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { Box, Heading, Text, ThemeContext } from "grommet"
+import React from "react"
+import { ThemeContext } from "grommet"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
@@ -20,7 +20,7 @@ const Helmet = ({ team, onClick, ...rest }) => {
       chiefs: file(relativePath: { eq: "chiefs.gif" }) {
         publicURL
       }
-      buccaneers: file(relativePath: { eq: "buccaneers.gif" }) {
+      eagles: file(relativePath: { eq: "eagles.gif" }) {
         publicURL
       }
     }

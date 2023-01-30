@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-import { Box, Text, Anchor } from "grommet"
+import { Box } from "grommet"
 import Helmet from "./Helmet"
 import baseTheme from "./theme"
 
@@ -11,19 +11,19 @@ const ThemePicker = ({ onChange }) => {
       accent: "#FFB81C",
       team: "Chiefs",
     },
-    buccaneers: {
-      color: "#d50a0a",
-      accent: "#34302b",
-      team: "Buccaneers",
+    eagles: {
+      color: "#004C54",
+      accent: "#A5ACAF",
+      team: "Eagles",
     },
   }
 
   const teams = [
     { label: "Chiefs", value: "chiefs" },
-    { label: "Buccaneers", value: "buccaneers" },
+    { label: "Eagles", value: "eagles" },
   ]
 
-  const handleChange = (team) => {
+  const handleChange = team => {
     trackCustomEvent({
       category: "Teams",
       action: "choose",
@@ -46,8 +46,15 @@ const ThemePicker = ({ onChange }) => {
   }
 
   return (
-    <Box width="large" direction="row" align="center" justify="center">
-      {teams.map((team) => (
+    <Box
+      width="large"
+      background="transparent"
+      direction="row"
+      align="center"
+      justify="center"
+      gap="large"
+    >
+      {teams.map(team => (
         <Box key={team.value} width={{ max: "200px" }}>
           <Helmet
             team={team.value}

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, createContext, useRef } from "react"
-import { Box, Heading } from "grommet"
+import React, { useEffect, useState, useRef, useCallback } from "react"
+import { Box } from "grommet"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import SoundboardRow from "./SoundboardRow"
-import Spinner from "./Spinner"
-import { useHowl, Play } from "rehowl"
+import { Play } from "rehowl"
 import sounds from "../lib/sounds"
 import chunkArray from "../lib/chunkArray"
 import { head, last } from "lodash/fp"
@@ -12,14 +11,12 @@ import AudioContext from "./AudioContext"
 
 Howler.autoSuspend = false
 Howler.autoUnlock = true
-const { ctx } = Howler
 
 const SOUNDS_PER_ROW = 2
 
 const mainSounds = sounds.slice(1, -1)
 
 const Soundboard = () => {
-  const [audioFile, setAudioFile] = useState()
   const [currentlyPlaying, setCurrentlyPlaying] = useState(false)
   const [activeHowl, setActiveHowl] = useState(null)
   const [progress, setProgress] = useState(0)
@@ -45,7 +42,7 @@ const Soundboard = () => {
     }
   }
 
-  const setPosition = () => {
+  const setPosition = useCallback(() => {
     if (activeHowl.playing()) {
       setProgress((activeHowl.seek() / activeHowl.duration()) * 100)
     }
@@ -54,17 +51,17 @@ const Soundboard = () => {
     } else {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
-  }
+  }, [activeHowl, setProgress, currentlyPlaying])
 
-  const getPosition = () => {
+  const getPosition = useCallback(() => {
     animationRef.current = requestAnimationFrame(setPosition)
-  }
+  }, [setPosition])
 
   useEffect(() => {
     if (activeHowl) {
       getPosition()
     }
-  }, [activeHowl])
+  }, [activeHowl, getPosition])
 
   return (
     <AudioContext.Provider value={{ currentlyPlaying, progress }}>

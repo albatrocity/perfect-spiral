@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 import theme from "../components/theme"
 import { useStaticQuery, graphql } from "gatsby"
-import { Box, Layer, Heading, Text, Anchor } from "grommet"
+import { Box, Layer, Heading, Text } from "grommet"
 import styled from "styled-components"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Soundboard from "../components/Soundboard"
 import ThemePicker from "../components/ThemePicker"
 import Helmet from "../components/Helmet"
@@ -43,7 +43,7 @@ const IndexPage = () => {
   const teamName = activeTheme.global.team
   return (
     <Layout theme={activeTheme}>
-      <SEO title={teamName ? `Go ${teamName}!` : "Choose Your Team"} />
+      <Seo title={teamName ? `Go ${teamName}!` : "Choose Your Team"} />
       <TeamContainer>
         <Helmet team={activeTheme.team} onClick={() => setTheme(theme)} />
       </TeamContainer>
@@ -55,7 +55,7 @@ const IndexPage = () => {
         }}
       >
         {teamNotChosen && (
-          <Layer background="blue">
+          <Layer>
             <Box pad="medium" fill justify="center" background="transparent">
               <Heading level={1} textAlign="center" color="white">
                 Choose your team
